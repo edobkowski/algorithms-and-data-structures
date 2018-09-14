@@ -1,6 +1,6 @@
 package com.codecool.dataStructures;
 
-public class GenericLinkedList <T> {
+public class GenericSinglyLinkedList<T> {
     class Node <T> {
         private T content;
         private Node next;
@@ -31,7 +31,7 @@ public class GenericLinkedList <T> {
     private Node tail;
     private int size = 0;
 
-    public GenericLinkedList() {
+    public GenericSinglyLinkedList() {
     }
 
     public Node head() {

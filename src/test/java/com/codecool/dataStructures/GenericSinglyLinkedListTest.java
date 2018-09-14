@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GenericLinkedListTest {
+class GenericSinglyLinkedListTest {
 
     @Test
     @DisplayName("Test adding new elements to list with correct input")
     void addTest() {
-        GenericLinkedList linkedList = new GenericLinkedList();
+        GenericSinglyLinkedList linkedList = new GenericSinglyLinkedList();
         linkedList.add(5);
         linkedList.add(10);
         String expectedResult = "5 10";
@@ -28,7 +28,7 @@ class GenericLinkedListTest {
     @Test
     @DisplayName("Test removing elements with correct index")
     void removeTest_WithCorrectInput() {
-        GenericLinkedList linkedList = createList(10);
+        GenericSinglyLinkedList linkedList = createList(10);
         linkedList.remove(0);
         linkedList.remove(5);
         String expectedResult = "1 2 3 4 5 7 8 9";
@@ -40,7 +40,7 @@ class GenericLinkedListTest {
     @Test
     @DisplayName("Test removing elements with incorrect index")
     void removeTest_WithIncorrectInput() {
-        GenericLinkedList linkedList = createList(10);
+        GenericSinglyLinkedList linkedList = createList(10);
 
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.remove(20));
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.remove(-1));
@@ -49,7 +49,7 @@ class GenericLinkedListTest {
     @Test
     @DisplayName("Test inserting value at correct index")
     void insertTest_WithCorrectInput() {
-        GenericLinkedList linkedList = createList(10);
+        GenericSinglyLinkedList linkedList = createList(10);
         linkedList.insert(2, 67);
         linkedList.insert(3, 67);
 
@@ -62,7 +62,7 @@ class GenericLinkedListTest {
     @Test
     @DisplayName("Test corner cases for insertion")
     void insertTest_CornerCases() {
-        GenericLinkedList linkedList = createList(10);
+        GenericSinglyLinkedList linkedList = createList(10);
         linkedList.insert(9, 80);
         linkedList.insert(0, 90);
 
@@ -75,7 +75,7 @@ class GenericLinkedListTest {
     @Test
     @DisplayName("Test inserting value at incorrect index")
     void insertTest_WithInCorrectInput() {
-        GenericLinkedList linkedList = createList(10);
+        GenericSinglyLinkedList linkedList = createList(10);
 
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.insert(-1, 30));
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.insert(10, 30));
@@ -84,7 +84,7 @@ class GenericLinkedListTest {
     @Test
     @DisplayName("Test getting value with correct index")
     void getTest_WithCorrectInput() {
-        GenericLinkedList linkedList = createList(10);
+        GenericSinglyLinkedList linkedList = createList(10);
         String expectedResult = "0";
         String actualResult = linkedList.get(0).toString();
 
@@ -94,7 +94,7 @@ class GenericLinkedListTest {
     @Test
     @DisplayName("Test getting value with incorrect index")
     void getTest_WithInCorrectInput() {
-        GenericLinkedList linkedList = createList(10);
+        GenericSinglyLinkedList linkedList = createList(10);
 
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.get(-1));
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.get(10));
@@ -103,13 +103,13 @@ class GenericLinkedListTest {
     @Test
     @DisplayName("Test getting value from empty list")
     void getTest_FromEmptyList() {
-        GenericLinkedList linkedList = new GenericLinkedList();
+        GenericSinglyLinkedList linkedList = new GenericSinglyLinkedList();
 
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.get(0));
     }
 
-    private GenericLinkedList createList(int size) {
-        GenericLinkedList linkedList = new GenericLinkedList();
+    private GenericSinglyLinkedList createList(int size) {
+        GenericSinglyLinkedList linkedList = new GenericSinglyLinkedList();
         for(int i = 0; i < size; i++) {
             linkedList.add(i);
         }
