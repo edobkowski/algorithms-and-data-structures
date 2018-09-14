@@ -100,6 +100,14 @@ class GenericLinkedListTest {
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.get(10));
     }
 
+    @Test
+    @DisplayName("Test getting value from empty list")
+    void getTest_FromEmptyList() {
+        GenericLinkedList linkedList = new GenericLinkedList();
+
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.get(0));
+    }
+
     private GenericLinkedList createList(int size) {
         GenericLinkedList linkedList = new GenericLinkedList();
         for(int i = 0; i < size; i++) {
