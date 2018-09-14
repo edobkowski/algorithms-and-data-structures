@@ -40,7 +40,7 @@ class GenericStackTest {
 
     @Test
     @DisplayName("Test poping elements from the stack")
-    void popTest() throws StackOverflowException{
+    void popTest() throws StackOverflowException, StackUnderflowException {
         GenericStack stack = new GenericStack(10);
         stack.push(5);
         stack.push(6);
@@ -53,7 +53,7 @@ class GenericStackTest {
 
     @Test
     @DisplayName("Test poping elements from the empty stack")
-    void popTest_FromEmpty() throws StackOverflowException{
+    void popTest_FromEmpty() throws StackOverflowException, StackUnderflowException {
         GenericStack stack = new GenericStack(1);
         stack.push(5);
         stack.pop();
