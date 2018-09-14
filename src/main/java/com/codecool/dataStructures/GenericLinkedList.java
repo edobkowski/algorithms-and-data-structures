@@ -1,7 +1,7 @@
 package com.codecool.dataStructures;
 
 public class GenericLinkedList <T> {
-    private class Node <T> {
+    class Node <T> {
         private T content;
         private Node next;
 
