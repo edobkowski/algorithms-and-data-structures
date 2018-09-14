@@ -1,5 +1,6 @@
 package com.codecool.dataStructures;
 
+import com.codecool.dataStructures.exceptions.EmptyQueueException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,16 +17,18 @@ class GenericQueueTest {
     }
 
     @Test
-    void dequeue() {
+    void dequeue() throws EmptyQueueException {
         GenericQueue queue = createQueue(5);
-        queue.dequeue();
+        String expectedResult = "0";
+        String actualResult = queue.dequeue().toString();
         int expectedSize = 4;
         int actualSize = queue.size();
-        String expectedResult = "1";
-        String actualResult = queue.peek().toString();
+        String expectedHead = "1";
+        String actualHead = queue.peek().toString();
 
         assertEquals(expectedSize, actualSize);
         assertEquals(expectedResult, actualResult);
+        assertEquals(expectedHead, actualHead);
     }
 
     @Test
