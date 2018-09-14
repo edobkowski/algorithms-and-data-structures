@@ -40,6 +40,19 @@ class GenericLinkedListTest {
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.remove(-1));
     }
 
+    @Test
+    @DisplayName("Test inserting value at correct index")
+    void insertTest_WithCorrectInput() {
+        GenericLinkedList linkedList = createList(10);
+        linkedList.insert(2, 67);
+        linkedList.insert(3, 67);
+
+        String expectedResult = "0 1 67 67 2 3 4 5 6 7 8 9";
+        String actualResult = linkedList.toString();
+
+        assertEquals(expectedResult, actualResult);
+    }
+
     private GenericLinkedList createList(int size) {
         GenericLinkedList linkedList = new GenericLinkedList();
         for(int i = 0; i < size; i++) {
