@@ -1,5 +1,7 @@
 package com.codecool.dataStructures;
 
+import com.codecool.dataStructures.exceptions.EmptyQueueException;
+
 public class GenericQueue <T> {
     class Node {
         private T value;
@@ -43,11 +45,20 @@ public class GenericQueue <T> {
             this.tail = newNode;
         }
 
-        size++;
+        this.size++;
     }
 
-    public T dequeue() {
-        return null;
+    public T dequeue() throws EmptyQueueException {
+        if(this.size < 1) {
+            throw new EmptyQueueException("Queue is empty");
+        }
+
+        Node removedNode = this.head;
+        this.head = head.next();
+
+        this.size--;
+
+        return removedNode.getValue();
     }
 
     public T peek() {
