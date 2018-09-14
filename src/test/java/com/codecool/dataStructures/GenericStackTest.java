@@ -1,5 +1,7 @@
 package com.codecool.dataStructures;
 
+import com.codecool.dataStructures.exceptions.StackOverflowException;
+import com.codecool.dataStructures.exceptions.StackUnderflowException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,21 +18,46 @@ class GenericStackTest {
 
     @Test
     @DisplayName("Test pushing elements on the stack")
-    void pushTest() {
+    void pushTest() throws StackOverflowException{
         GenericStack stack = new GenericStack(10);
         stack.push(5);
         stack.push(6);
         stack.push(8);
         int expectedSpaceTaken = 3;
         int actualSpaceTaken = stack.spaceTaken();
+
+        assertEquals(expectedSpaceTaken, actualSpaceTaken);
     }
 
     @Test
     @DisplayName("Test pushing too much elements on the stack")
-    void pushTest_OverCapacity() {
+    void pushTest_OverCapacity() throws StackOverflowException{
         GenericStack stack = new GenericStack(1);
         stack.push(5);
 
-        assertThrows(StackOverFlowException.class, () -> stack.push(6));
+        assertThrows(StackOverflowException.class, () -> stack.push(6));
+    }
+
+    @Test
+    @DisplayName("Test poping elements from the stack")
+    void popTest() throws StackOverflowException{
+        GenericStack stack = new GenericStack(10);
+        stack.push(5);
+        stack.push(6);
+        stack.pop();
+        int expectedSpaceTaken = 1;
+        int actualSpaceTaken = stack.spaceTaken();
+
+        assertEquals(expectedSpaceTaken, actualSpaceTaken);
+    }
+
+    @Test
+    @DisplayName("Test poping elements from the empty stack")
+    void popTest_FromEmpty() throws StackOverflowException{
+        GenericStack stack = new GenericStack(1);
+        stack.push(5);
+        stack.pop();
+
+        assertThrows(StackUnderflowException.class, () -> stack.pop());
     }
 }
