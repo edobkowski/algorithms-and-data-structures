@@ -80,11 +80,24 @@ public class HashTable <K, V> {
     }
 
     public void remove(K key) {
+        int keyIndex = getKeyIndex(key);
+        List<KeyValue> entries = elements[keyIndex];
 
+        for(KeyValue kv : entries) {
+            if(kv.getKey().equals(key)) {
+                entries.remove(key);
+                this.size--;
+            }
+        }
     }
 
     public void clearAll() {
-
+        for(int i = 0; i < this.capacity; i++) {
+            if(elements[i] != null) {
+                this.size -= elements[i].size();
+                elements[i].clear();
+            }
+        }
     }
 
     public int size() {
