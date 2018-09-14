@@ -6,7 +6,7 @@ public class GenericQueue <T> {
     class Node {
         private T value;
         private Node next;
-        private Integer prioryty;
+        private Integer prioryty = -1;
 
         Node(T value) {
             this.value = value;
@@ -19,6 +19,10 @@ public class GenericQueue <T> {
 
         public T getValue() {
             return this.value;
+        }
+
+        public Integer getPrioryty() {
+            return prioryty;
         }
 
         public Node next() {
@@ -35,14 +39,17 @@ public class GenericQueue <T> {
     private int size = 0;
 
     public void enqueue(T element) {
-        Node newNode = new Node(element);
+        enqueue(element, -1);
+    }
+
+    public void enqueue(T element, Integer priority) {
+        Node newNode = new Node(element, priority);
 
         if(size == 0) {
             this.head = newNode;
             this.tail = newNode;
         } else {
-            this.tail.setNext(newNode);
-            this.tail = newNode;
+            insertNode(newNode);
         }
 
         this.size++;
@@ -67,5 +74,26 @@ public class GenericQueue <T> {
 
     public int size() {
         return this.size;
+    }
+
+    private void insertNode(Node node) {
+        Node currentNode = this.head;
+
+        if(currentNode.getPrioryty() < node.getPrioryty()) {
+            node.setNext(currentNode);
+            this.head = node;
+        } else {
+            Node nextNode = currentNode.next();
+            while (nextNode != null && nextNode.getPrioryty() >= node.getPrioryty()) {
+                currentNode = currentNode.next();
+                nextNode = nextNode.next();
+            }
+            currentNode.setNext(node);
+            node.setNext(nextNode);
+
+            if(nextNode == null) {
+                this.tail = node;
+            }
+        }
     }
 }
