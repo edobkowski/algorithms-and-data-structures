@@ -14,7 +14,7 @@ class GenericLinkedListTest {
         GenericLinkedList linkedList = new GenericLinkedList();
         linkedList.add(5);
         linkedList.add(10);
-        String expectedResult = "5, 10";
+        String expectedResult = "5 10";
         String actualResult = linkedList.toString();
 
         assertEquals(expectedResult, actualResult);
