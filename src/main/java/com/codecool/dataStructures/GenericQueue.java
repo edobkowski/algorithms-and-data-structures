@@ -48,4 +48,11 @@ public class GenericQueue <T> {
         return this.size;
     }
 
+    public T getHead() {
+        return head.getValue();
+    }
+
+    public T getTail() {
+        return tail.getValue();
+    }
 }
