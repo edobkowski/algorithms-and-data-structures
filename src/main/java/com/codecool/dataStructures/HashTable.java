@@ -48,7 +48,7 @@ public class HashTable <K, V> {
 
     public void add(K key, V value) {
         ensureSpace(this.size+1);
-        int keyIndex = key.hashCode() % capacity;   // compute index in the range from 0 to capacity
+        int keyIndex = getKeyIndex(key);   // compute index in the range from 0 to capacity
         if(elements[keyIndex] == null) {
             elements[keyIndex] = new LinkedList<KeyValue>();
         }
@@ -90,5 +90,9 @@ public class HashTable <K, V> {
             int newCapacity = (this.capacity*3)/2+1;
             this.elements = Arrays.copyOf(elements, newCapacity);
         }
+    }
+
+    private int getKeyIndex(K key) {
+        return key.hashCode() % capacity;
     }
 }
