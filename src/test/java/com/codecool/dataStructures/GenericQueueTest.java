@@ -18,6 +18,19 @@ class GenericQueueTest {
     }
 
     @Test
+    @DisplayName("Test enqueue with priorities")
+    void enqueueTest_WithPriorities() {
+        GenericQueue<String> queue = new GenericQueue();
+        queue.enqueue("kota", 1);
+        queue.enqueue("Ala", 5);
+        queue.enqueue("ma", 2);
+        String expectedResult = "Ala";
+        String actualResult = queue.peek();
+
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
     void dequeue() throws EmptyQueueException {
         GenericQueue queue = createQueue(5);
         String expectedResult = "0";
@@ -47,7 +60,6 @@ class GenericQueueTest {
         String actualResult = queue.peek().toString();
 
         assertEquals(expectedResult, actualResult);
-
     }
 
     private GenericQueue createQueue(int size) {
