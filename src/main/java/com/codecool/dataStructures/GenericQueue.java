@@ -54,7 +54,7 @@ public class GenericQueue <T> {
         }
 
         Node removedNode = this.head;
-        this.head = head.next();
+        this.head = this.head.next();
 
         this.size--;
 
@@ -62,7 +62,7 @@ public class GenericQueue <T> {
     }
 
     public T peek() {
-        return null;
+        return this.head.getValue();
     }
 
     public int size() {
