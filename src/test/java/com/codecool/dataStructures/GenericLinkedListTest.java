@@ -85,6 +85,15 @@ class GenericLinkedListTest {
         assertEquals(expectedResult, actualResult);
     }
 
+    @Test
+    @DisplayName("Test getting value with incorrect index")
+    void getTest_WithInCorrectInput() {
+        GenericLinkedList linkedList = createList(10);
+
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.get(-1));
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.get(10));
+    }
+
     private GenericLinkedList createList(int size) {
         GenericLinkedList linkedList = new GenericLinkedList();
         for(int i = 0; i < size; i++) {
