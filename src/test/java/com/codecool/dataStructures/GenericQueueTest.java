@@ -1,6 +1,7 @@
 package com.codecool.dataStructures;
 
 import com.codecool.dataStructures.exceptions.EmptyQueueException;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,6 +30,14 @@ class GenericQueueTest {
         assertEquals(expectedSize, actualSize);
         assertEquals(expectedResult, actualResult);
         assertEquals(expectedHead, actualHead);
+    }
+
+    @Test
+    @DisplayName("Test dequeue on empty queue. Should throw EmptyQueueException.")
+    void dequeueTest_EmpyQueue() {
+        GenericQueue queue = new GenericQueue();
+
+        assertThrows(EmptyQueueException.class, () -> queue.dequeue());
     }
 
     @Test
