@@ -1,5 +1,7 @@
 package com.codecool.dataStructures;
 
+import com.codecool.dataStructures.exceptions.StackOverflowException;
+
 public class GenericStack <T> {
 
     private Object[] array;
@@ -12,11 +14,17 @@ public class GenericStack <T> {
         }
 
         this.size = size;
+        this.top = -1;
         this.array = new Object[size];
     }
 
-    public T push() {
-        return null;
+    public T push(T element) throws StackOverflowException {
+        if(this.top+1 == this.size) {
+            throw new StackOverflowException("Limit of stack capacity reached");
+        }
+
+        this.array[++this.top] = element;
+        return element;
     }
 
     public T pop() {
