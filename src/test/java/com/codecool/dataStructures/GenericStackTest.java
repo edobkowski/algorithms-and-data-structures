@@ -14,4 +14,14 @@ class GenericStackTest {
         assertThrows(IllegalArgumentException.class, () -> new GenericStack(-20));
     }
 
+    @Test
+    @DisplayName("Test pushing elements on the stack")
+    void pushTest() {
+        GenericStack stack = new GenericStack(10);
+        stack.push(5);
+        stack.push(6);
+        stack.push(8);
+        int expectedSpaceTaken = 3;
+        int actualSpaceTaken = stack.spaceTaken();
+    }
 }
