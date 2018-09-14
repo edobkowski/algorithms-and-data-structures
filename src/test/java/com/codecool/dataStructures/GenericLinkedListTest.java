@@ -24,7 +24,8 @@ class GenericLinkedListTest {
     void removeTest_WithCorrectInput() {
         GenericLinkedList linkedList = createList(10);
         linkedList.remove(0);
-        String expectedResult = "1 2 3 4 5 6 7 8 9";
+        linkedList.remove(5);
+        String expectedResult = "1 2 3 4 5 7 8 9";
         String actualResult = linkedList.toString();
 
         assertEquals(expectedResult, actualResult);
