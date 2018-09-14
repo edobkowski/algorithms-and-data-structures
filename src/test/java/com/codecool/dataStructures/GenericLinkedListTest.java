@@ -1,6 +1,5 @@
 package com.codecool.dataStructures;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,5 +17,25 @@ class GenericLinkedListTest {
         String actualResult = linkedList.toString();
 
         assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    @DisplayName("Test removing elements with correct index")
+    void removeTest_WithCorrectInput() {
+        GenericLinkedList linkedList = createList(10);
+        linkedList.remove(0);
+        String expectedResult = "1 2 3 4 5 6 7 8 9";
+        String actualResult = linkedList.toString();
+
+        assertEquals(expectedResult, actualResult);
+    }
+
+    private GenericLinkedList createList(int size) {
+        GenericLinkedList linkedList = new GenericLinkedList();
+        for(int i = 0; i < size; i++) {
+            linkedList.add(i);
+        }
+
+        return linkedList;
     }
 }
