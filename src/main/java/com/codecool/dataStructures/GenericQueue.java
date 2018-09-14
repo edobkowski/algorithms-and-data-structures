@@ -30,10 +30,20 @@ public class GenericQueue <T> {
 
     private Node head;
     private Node tail;
-    private int size;
+    private int size = 0;
 
     public void enqueue(T element) {
+        Node newNode = new Node(element);
 
+        if(size == 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.tail.setNext(newNode);
+            this.tail = newNode;
+        }
+
+        size++;
     }
 
     public T dequeue() {
