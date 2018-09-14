@@ -38,7 +38,8 @@ public class GenericStack <T> {
     }
 
     public T peek() {
-        return null;
+
+        return (T) array[top];
     }
 
     public int size() {
