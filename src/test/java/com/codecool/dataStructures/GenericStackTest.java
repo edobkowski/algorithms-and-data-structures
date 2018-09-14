@@ -61,4 +61,27 @@ class GenericStackTest {
 
         assertThrows(StackUnderflowException.class, () -> stack.pop());
     }
+
+    @Test
+    @DisplayName("Test peeking element on the stack")
+    void peekTest() throws StackOverflowException {
+        GenericStack<Integer> stack = createStack(5);
+        int expectedValue = 4;
+        int actualValue = stack.peek();
+        int expectedSpaceTaken = 5;
+        int actualSpaceTaken = stack.spaceTaken();
+
+        assertEquals(expectedValue, actualValue);
+        assertEquals(expectedSpaceTaken, actualSpaceTaken);
+    }
+
+    private GenericStack createStack(int size) throws StackOverflowException {
+        GenericStack<Integer> stack = new GenericStack<>(size);
+        for(int i = 0; i < size; i++) {
+            stack.push(i);
+        }
+
+        return stack;
+
+    }
 }
