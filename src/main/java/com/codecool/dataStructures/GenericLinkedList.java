@@ -29,6 +29,14 @@ public class GenericLinkedList <T> {
     public GenericLinkedList() {
     }
 
+    public Node head() {
+        return this.head;
+    }
+
+    public Node tail() {
+        return this.tail;
+    }
+
     public void add(T element) {
         Node newNode = new Node(element);
 
