@@ -44,9 +44,7 @@ public class GenericLinkedList <T> {
     }
 
     public void remove(int index) {
-        if(index < 0 || index >= this.size) {
-            throw new ArrayIndexOutOfBoundsException();
-        }
+        checkExceptions(index);
 
         if(this.head == this.tail) {
             tail = null;
@@ -64,6 +62,10 @@ public class GenericLinkedList <T> {
         }
 
         size--;
+    }
+
+    public void insert(int index, T element) {
+        checkExceptions(index);
     }
 
     public String toString() {
@@ -88,5 +90,11 @@ public class GenericLinkedList <T> {
         }
 
         return currentNode;
+    }
+
+    private void checkExceptions(int index) {
+        if(index < 0 || index >= this.size) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
     }
 }
