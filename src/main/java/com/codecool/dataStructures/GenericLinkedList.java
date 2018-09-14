@@ -49,7 +49,6 @@ public class GenericLinkedList <T> {
         if(this.head == this.tail) {
             tail = null;
         }
-
         if(index == 0) {
             this.head = this.head.next();
         } else {
@@ -61,16 +60,28 @@ public class GenericLinkedList <T> {
             }
         }
 
-        size--;
+        this.size--;
     }
 
     public void insert(int index, T element) {
         checkExceptions(index);
+        Node newNode = new Node(element);
+
+        if(index == 0) {
+            newNode.setNext(this.head);
+            this.head = newNode;
+        } else {
+            Node precedingNode = findPrecedingNode(index);
+            newNode.setNext(precedingNode.next());
+            precedingNode.setNext(newNode);
+        }
+
+        this.size++;
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        Node currentNode = head;
+        Node currentNode = this.head;
 
         while(currentNode != null) {
             sb.append(currentNode.getContent()).append(" ");
