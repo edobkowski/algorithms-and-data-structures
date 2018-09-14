@@ -15,6 +15,29 @@ class GenericQueueTest {
         assertEquals(expectedSize, actualSize);
     }
 
+    @Test
+    void dequeue() {
+        GenericQueue queue = createQueue(5);
+        queue.dequeue();
+        int expectedSize = 4;
+        int actualSize = queue.size();
+        String expectedResult = "1";
+        String actualResult = queue.peek().toString();
+
+        assertEquals(expectedSize, actualSize);
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    void peek() {
+        GenericQueue queue = createQueue(5);
+        String expectedResult = "0";
+        String actualResult = queue.peek().toString();
+
+        assertEquals(expectedResult, actualResult);
+
+    }
+
     private GenericQueue createQueue(int size) {
         GenericQueue queue = new GenericQueue();
         for(int i = 0; i < size; i++) {
