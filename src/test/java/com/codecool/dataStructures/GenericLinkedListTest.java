@@ -54,12 +54,25 @@ class GenericLinkedListTest {
     }
 
     @Test
+    @DisplayName("Test corner cases for insertion")
+    void insertTest_CornerCases() {
+        GenericLinkedList linkedList = createList(10);
+        linkedList.insert(9, 80);
+        linkedList.insert(0, 90);
+
+        String expectedResult = "90 0 1 2 3 4 5 6 7 8 80 9";
+        String actualResult = linkedList.toString();
+
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
     @DisplayName("Test inserting value at incorrect index")
     void insertTest_WithInCorrectInput() {
         GenericLinkedList linkedList = createList(10);
 
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.insert(-1, 30));
-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.insert(20, 30));
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.insert(10, 30));
     }
 
     private GenericLinkedList createList(int size) {
