@@ -75,6 +75,16 @@ class GenericStackTest {
         assertEquals(expectedSpaceTaken, actualSpaceTaken);
     }
 
+    @Test
+    @DisplayName("Test calculating space left on the stack")
+    void spaceLeftTest() throws StackOverflowException {
+        GenericStack stack = createStack(10);
+        int expectedValue = 0;
+        int actualValue = stack.spaceLeft();
+
+        assertEquals(expectedValue, actualValue);
+    }
+
     private GenericStack createStack(int size) throws StackOverflowException {
         GenericStack<Integer> stack = new GenericStack<>(size);
         for(int i = 0; i < size; i++) {
@@ -82,6 +92,5 @@ class GenericStackTest {
         }
 
         return stack;
-
     }
 }
