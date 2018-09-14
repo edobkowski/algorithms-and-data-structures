@@ -40,7 +40,30 @@ public class GenericLinkedList <T> {
             this.tail = newNode;
         }
 
-        size++;
+        this.size++;
+    }
+
+    public void remove(int index) {
+        if(index < 0 || index >= this.size) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+
+        if(this.head == this.tail) {
+            tail = null;
+        }
+
+        if(index == 0) {
+            this.head = this.head.next();
+        } else {
+            Node precedingNode = findPrecedingNode(index);
+            precedingNode.setNext(precedingNode.next().next());
+
+            if(precedingNode.next() == null) {
+                this.tail = precedingNode;
+            }
+        }
+
+        size--;
     }
 
     public String toString() {
@@ -53,5 +76,17 @@ public class GenericLinkedList <T> {
         }
 
         return sb.toString().trim();
+    }
+
+    private Node findPrecedingNode(int index) {
+        int nodeIndex = 0;
+        Node currentNode = this.head;
+
+        while(nodeIndex+1 != index) {
+            currentNode = currentNode.next();
+            nodeIndex++;
+        }
+
+        return currentNode;
     }
 }
