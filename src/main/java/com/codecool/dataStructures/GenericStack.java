@@ -35,6 +35,10 @@ public class GenericStack <T> {
         return this.size - (this.top + 1);
     }
 
+    public int spaceTaken() {
+        return this.top + 1;
+    }
+
     public boolean empty() {
         return true;
     }
