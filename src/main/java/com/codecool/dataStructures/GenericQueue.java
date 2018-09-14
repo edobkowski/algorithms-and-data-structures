@@ -76,6 +76,10 @@ public class GenericQueue <T> {
         return this.size;
     }
 
+    public boolean isEmpty() {
+        return this.head == null;
+    }
+
     private void insertNode(Node node) {
         Node currentNode = this.head;
 
