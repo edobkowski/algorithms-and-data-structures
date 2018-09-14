@@ -15,8 +15,14 @@ class GenericLinkedListTest {
         linkedList.add(10);
         String expectedResult = "5 10";
         String actualResult = linkedList.toString();
+        String expectedHead = "5";
+        String actualHead = linkedList.tail().toString();
+        String expectedTail = "10";
+        String actualTail = linkedList.tail().toString();
 
         assertEquals(expectedResult, actualResult);
+        assertEquals(expectedHead, actualHead);
+        assertEquals(expectedTail, actualTail);
     }
 
     @Test
@@ -80,7 +86,7 @@ class GenericLinkedListTest {
     void getTest_WithCorrectInput() {
         GenericLinkedList linkedList = createList(10);
         String expectedResult = "0";
-        String actualResult = linkedList.get(0).toString;
+        String actualResult = linkedList.get(0).toString();
 
         assertEquals(expectedResult, actualResult);
     }
