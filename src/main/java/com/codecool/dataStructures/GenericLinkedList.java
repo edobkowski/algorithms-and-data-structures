@@ -92,6 +92,18 @@ public class GenericLinkedList <T> {
         this.size++;
     }
 
+    public Node get(int index) {
+        checkExceptions(index);
+        Node currentNode = this.head;
+        int nodeIndex = 0;
+        while(nodeIndex != index) {
+            currentNode = currentNode.next();
+            nodeIndex++;
+        }
+
+        return currentNode;
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         Node currentNode = this.head;
