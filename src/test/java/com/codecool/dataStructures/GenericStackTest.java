@@ -24,4 +24,13 @@ class GenericStackTest {
         int expectedSpaceTaken = 3;
         int actualSpaceTaken = stack.spaceTaken();
     }
+
+    @Test
+    @DisplayName("Test pushing too much elements on the stack")
+    void pushTest_OverCapacity() {
+        GenericStack stack = new GenericStack(1);
+        stack.push(5);
+
+        assertThrows(StackOverFlowException.class, () -> stack.push(6));
+    }
 }
