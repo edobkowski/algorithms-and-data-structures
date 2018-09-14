@@ -1,6 +1,7 @@
 package com.codecool.dataStructures;
 
 import com.codecool.dataStructures.exceptions.StackOverflowException;
+import com.codecool.dataStructures.exceptions.StackUnderflowException;
 
 public class GenericStack <T> {
 
@@ -27,8 +28,13 @@ public class GenericStack <T> {
         return element;
     }
 
-    public T pop() {
-        return null;
+    public T pop() throws StackUnderflowException {
+        if(top == -1) {
+            throw new StackUnderflowException("Stack empty");
+        }
+            Object removedElement = array[top--];
+
+        return (T) removedElement;
     }
 
     public T peek() {
