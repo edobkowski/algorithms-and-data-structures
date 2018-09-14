@@ -30,6 +30,15 @@ class GenericLinkedListTest {
         assertEquals(expectedResult, actualResult);
     }
 
+    @Test
+    @DisplayName("Test removing elements with incorrect index")
+    void removeTest_WithIncorrectInput() {
+        GenericLinkedList linkedList = createList(10);
+
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.remove(20));
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> linkedList.remove(-1));
+    }
+
     private GenericLinkedList createList(int size) {
         GenericLinkedList linkedList = new GenericLinkedList();
         for(int i = 0; i < size; i++) {
