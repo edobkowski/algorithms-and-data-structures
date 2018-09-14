@@ -67,6 +67,15 @@ public class HashTable <K, V> {
     }
 
     public V get(K key) {
+        int keyIndex = getKeyIndex(key);
+        List<KeyValue> entries = elements[keyIndex];
+
+        for(KeyValue kv : entries) {
+            if(kv.getKey().equals(key)) {
+                return (V) kv.getValue();
+            }
+        }
+
         return null;
     }
 
