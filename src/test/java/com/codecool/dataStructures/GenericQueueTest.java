@@ -8,12 +8,19 @@ class GenericQueueTest {
 
     @Test
     void enqueue() {
-        GenericQueue queue = new GenericQueue();
-        queue.enqueue(80);
-        queue.enqueue(40);
         int expectedSize = 2;
+        GenericQueue queue = createQueue(expectedSize);
         int actualSize = queue.size();
 
         assertEquals(expectedSize, actualSize);
+    }
+
+    private GenericQueue createQueue(int size) {
+        GenericQueue queue = new GenericQueue();
+        for(int i = 0; i < size; i++) {
+            queue.enqueue(i);
+        }
+
+        return queue;
     }
 }
