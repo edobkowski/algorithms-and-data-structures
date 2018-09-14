@@ -47,12 +47,4 @@ public class GenericQueue <T> {
     public int size() {
         return this.size;
     }
-
-    public T getHead() {
-        return head.getValue();
-    }
-
-    public T getTail() {
-        return tail.getValue();
-    }
 }
