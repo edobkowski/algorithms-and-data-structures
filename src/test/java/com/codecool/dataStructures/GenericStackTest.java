@@ -41,10 +41,11 @@ class GenericStackTest {
     @Test
     @DisplayName("Test poping elements from the stack")
     void popTest() throws StackOverflowException, StackUnderflowException {
-        GenericStack stack = new GenericStack(10);
+        GenericStack<Integer> stack = new GenericStack<>(10);
         stack.push(5);
         stack.push(6);
-        stack.pop();
+        int expectedRemovedValue = 6;
+        int actualRemovedValue = stack.pop();
         int expectedSpaceTaken = 1;
         int actualSpaceTaken = stack.spaceTaken();
 
