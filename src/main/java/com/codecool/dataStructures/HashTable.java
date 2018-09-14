@@ -42,12 +42,16 @@ public class HashTable <K, V> {
     }
 
     public HashTable(int capacity) {
+        this.capacity = capacity;
         this.elements = new LinkedList[this.capacity];
     }
 
     public void add(K key, V value) {
         ensureSpace(this.size+1);
         int keyIndex = key.hashCode() % capacity;   // compute index in the range from 0 to capacity
+        if(elements[keyIndex] == null) {
+            elements[keyIndex] = new LinkedList<KeyValue>();
+        }
 
         List<KeyValue> linkedList = elements[keyIndex];
 
