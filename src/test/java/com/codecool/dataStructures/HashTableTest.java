@@ -37,4 +37,16 @@ class HashTableTest {
 
         assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    void removeTest() {
+        HashTable<String, Integer> hashTable = new HashTable<>();
+        hashTable.add("one", 1);
+        hashTable.add("two", 3);
+        hashTable.remove("one");
+        int expectedSize = 1;
+        int actualSize = hashTable.size();
+
+        assertEquals(expectedSize, actualSize);
+    }
 }
