@@ -16,7 +16,7 @@ class GenericLinkedListTest {
         String expectedResult = "5 10";
         String actualResult = linkedList.toString();
         String expectedHead = "5";
-        String actualHead = linkedList.tail().toString();
+        String actualHead = linkedList.head().toString();
         String expectedTail = "10";
         String actualTail = linkedList.tail().toString();
 
