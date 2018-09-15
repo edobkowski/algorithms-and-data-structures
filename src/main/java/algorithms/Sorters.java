@@ -28,11 +28,60 @@ public class Sorters {
     }
 
     public static void selectionSort(int[] array) {
-
+        for(int i = 0; i < array.length; i++) {
+            for(int j = i+1; j < array.length; j++) {
+                if(array[i] > array[j]) {
+                    swap(array, i, j);
+                }
+            }
+        }
     }
 
     public static void mergeSort(int[] array) {
+        sortByMerge(array, 0, array.length-1);
+    }
 
+    private static void sortByMerge(int[] array, int leftIndex, int rightIndex) {
+        if(leftIndex >= rightIndex) {
+            return;
+        }
+
+        int middleIndex = (int) Math.floor((leftIndex+rightIndex)/2);
+        sortByMerge(array, leftIndex, middleIndex);
+        sortByMerge(array, middleIndex+1, rightIndex);
+
+        merge(array, leftIndex, middleIndex, rightIndex);
+    }
+
+    private static void merge(int[] array, int leftIndex, int middleIndex, int rightIndex) {
+        int[] tempArray = array.clone();
+
+        int i = leftIndex;
+        int j = middleIndex + 1;
+        int k = leftIndex;
+
+        while(i <= middleIndex && j <= rightIndex) {
+            if(tempArray[i] <= tempArray[j]) {
+                array[k] = tempArray[i];
+                i++;
+            } else {
+                array[k] = tempArray[j];
+                j++;
+            }
+            k++;
+        }
+
+        // copy the rest of left or right array if not whole array was iterated through
+        while(i <= middleIndex) {
+            array[k] = tempArray[i];
+            k++;
+            i++;
+        }
+        while(j <= rightIndex) {
+            array[k] = tempArray[j];
+            k++;
+            j++;
+        }
     }
 
     public static void quickSort(int[] array) {
