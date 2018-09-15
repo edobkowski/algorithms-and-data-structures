@@ -85,7 +85,39 @@ public class Sorters {
     }
 
     public static void quickSort(int[] array) {
+        sortByQuick(array, 0, array.length-1);
+    }
 
+    private static void sortByQuick(int[] array, int left, int right) {
+        if(left >= right) {
+            return;
+        }
+
+        int pivot = array[right];
+        int pivotIndex = partitionArray(array, left, right, pivot);
+
+        sortByQuick(array, left, pivotIndex-1);
+        sortByQuick(array, pivotIndex+1, right);
+    }
+
+    private static int partitionArray(int[] array, int left, int right, int pivot) {
+        int leftPointer = left - 1;
+        int rightPointer = right;
+
+        while (true) {
+            while (leftPointer < array.length && array[++leftPointer] < pivot);
+            while (rightPointer > 0 && array[--rightPointer] > pivot);
+
+            if(leftPointer >= rightPointer) {
+                break;
+            } else {
+                swap(array, leftPointer, rightPointer);
+            }
+        }
+
+        swap(array, leftPointer, right);
+
+        return leftPointer;
     }
 
     private static void swap(int[] array, int i, int j) {
