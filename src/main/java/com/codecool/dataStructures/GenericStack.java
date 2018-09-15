@@ -55,6 +55,6 @@ public class GenericStack <T> {
     }
 
     public boolean empty() {
-        return true;
+        return array[0] == null;
     }
 }

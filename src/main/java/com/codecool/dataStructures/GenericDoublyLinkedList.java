@@ -1,9 +1,11 @@
 package com.codecool.dataStructures;
 
-public class GenericLinkedList <T> {
+@SuppressWarnings("unchecked")
+public class GenericDoublyLinkedList <T> {
     class Node <T> {
         private T content;
         private Node next;
+        private Node previous;
 
         Node(T content) {
             this.content = content;
@@ -13,12 +15,20 @@ public class GenericLinkedList <T> {
             return this.next;
         }
 
+        public Node previous() {
+            return this.previous;
+        }
+
         public T getContent() {
             return this.content;
         }
 
         public void setNext(Node next) {
             this.next = next;
+        }
+
+        public void setPrevious(Node previous) {
+            this.previous = previous;
         }
 
         @Override
@@ -30,9 +40,6 @@ public class GenericLinkedList <T> {
     private Node head;
     private Node tail;
     private int size = 0;
-
-    public GenericLinkedList() {
-    }
 
     public Node head() {
         return this.head;
@@ -50,6 +57,7 @@ public class GenericLinkedList <T> {
             this.tail = newNode;
         } else {
             this.tail.setNext(newNode);
+            newNode.setPrevious(this.tail);
             this.tail = newNode;
         }
 
@@ -59,20 +67,14 @@ public class GenericLinkedList <T> {
     public void remove(int index) {
         checkExceptions(index);
 
-        if(this.head == this.tail) {
-            tail = null;
-        }
         if(index == 0) {
             this.head = this.head.next();
         } else {
-            Node precedingNode = findPrecedingNode(index);
-            precedingNode.setNext(precedingNode.next().next());
-
-            if(precedingNode.next() == null) {
-                this.tail = precedingNode;
-            }
+            Node removedNode = findNode(index);
+            popNode(removedNode);
         }
 
+        setTail();
         this.size--;
     }
 
@@ -84,9 +86,13 @@ public class GenericLinkedList <T> {
             newNode.setNext(this.head);
             this.head = newNode;
         } else {
-            Node precedingNode = findPrecedingNode(index);
-            newNode.setNext(precedingNode.next());
-            precedingNode.setNext(newNode);
+            Node previousNode = findNode(index).previous();
+            Node nextNode = previousNode.next();
+
+            newNode.setNext(nextNode);
+            newNode.setPrevious(previousNode);
+            previousNode.setNext(newNode);
+            nextNode.setPrevious(newNode);
         }
 
         this.size++;
@@ -94,14 +100,8 @@ public class GenericLinkedList <T> {
 
     public Node get(int index) {
         checkExceptions(index);
-        Node currentNode = this.head;
-        int nodeIndex = 0;
-        while(nodeIndex != index) {
-            currentNode = currentNode.next();
-            nodeIndex++;
-        }
 
-        return currentNode;
+        return findNode(index);
     }
 
     public String toString() {
@@ -116,11 +116,34 @@ public class GenericLinkedList <T> {
         return sb.toString().trim();
     }
 
-    private Node findPrecedingNode(int index) {
+    private void popNode(Node node){
+        Node precedingNode = node.previous();
+        Node nextNode = node.next();
+
+        precedingNode.setNext(nextNode);
+        nextNode.setPrevious(precedingNode);
+    }
+
+    private void setTail() {
+        if(this.head == null) {
+            this.tail = null;
+            return;
+        }
+
+        Node currentNode = this.head;
+
+        while(currentNode.next() != null) {
+            currentNode = currentNode.next();
+        }
+
+        this.tail = currentNode;
+    }
+
+    private Node findNode(int index) {
         int nodeIndex = 0;
         Node currentNode = this.head;
 
-        while(nodeIndex+1 != index) {
+        while(nodeIndex != index) {
             currentNode = currentNode.next();
             nodeIndex++;
         }
