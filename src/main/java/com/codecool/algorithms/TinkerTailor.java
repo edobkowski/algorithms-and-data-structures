@@ -1,4 +1,4 @@
-package algorithms;
+package com.codecool.algorithms;
 
 import java.util.LinkedList;
 import java.util.List;

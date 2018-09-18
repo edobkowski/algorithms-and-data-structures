@@ -1,4 +1,4 @@
-package algorithms;
+package com.codecool.algorithms;
 
 public class Sorters {
 

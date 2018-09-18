@@ -1,4 +1,4 @@
-package algorithms;
+package com.codecool.algorithms;
 
 public class BinarySearch {
     public static boolean search(int[] array, int n) {
